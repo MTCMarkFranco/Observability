@@ -1,0 +1,26 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "environmentName": {
+      "value": "demo"
+    },
+    "workspaceName": {
+      "value": "law-observability-demo"
+    },
+    "retentionInDays": {
+      "value": 90
+    },
+    "dailyQuotaGb": {
+      "value": 5
+    },
+    "tags": {
+      "value": {
+        "Environment": "Demo",
+        "Purpose": "Observability-Training",
+        "CreatedBy": "Demo-Script",
+        "CostCenter": "IT-Training"
+      }
+    }
+  }
+}
