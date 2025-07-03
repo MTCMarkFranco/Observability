@@ -2036,24 +2036,34 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\marfra\\.nuget\\packages\\": {}
+    "C:\\Users\\marfra\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Projects\\Observability\\demos\\opentelemetry-samples\\src\\console-app\\ObservabilityDemo.OpenTelemetry.csproj",
+      "projectUniqueName": "C:\\Projects\\Observability\\demos\\opentelemetry-samples\\src\\console-app\\ObservabilityDemo.OpenTelemetry.csproj",
       "projectName": "ObservabilityDemo.OpenTelemetry",
-      "projectPath": "F:\\Projects\\Observability\\demos\\opentelemetry-samples\\src\\console-app\\ObservabilityDemo.OpenTelemetry.csproj",
+      "projectPath": "C:\\Projects\\Observability\\demos\\opentelemetry-samples\\src\\console-app\\ObservabilityDemo.OpenTelemetry.csproj",
       "packagesPath": "C:\\Users\\marfra\\.nuget\\packages\\",
-      "outputPath": "F:\\Projects\\Observability\\demos\\opentelemetry-samples\\src\\console-app\\obj\\",
+      "outputPath": "C:\\Projects\\Observability\\demos\\opentelemetry-samples\\src\\console-app\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\marfra\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\marfra\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -2072,7 +2082,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.100"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net8.0": {
@@ -2130,30 +2140,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[8.0.17, 8.0.17]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[8.0.17, 8.0.17]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[8.0.17, 8.0.17]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[8.0.17, 8.0.17]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.107/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
       }
     }
   },
@@ -2161,7 +2153,7 @@
     {
       "code": "NU1101",
       "level": "Error",
-      "message": "Unable to find package OpenTelemetry.Exporter.AzureMonitor. No packages exist with this id in source(s): nuget.org",
+      "message": "Unable to find package OpenTelemetry.Exporter.AzureMonitor. No packages exist with this id in source(s): C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org",
       "libraryId": "OpenTelemetry.Exporter.AzureMonitor",
       "targetGraphs": [
         "net8.0"

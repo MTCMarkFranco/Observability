@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tKRc5Ew8nqo=",
+  "dgSpecHash": "GXcumUDI0cc=",
   "success": false,
-  "projectFilePath": "F:\\Projects\\Observability\\demos\\opentelemetry-samples\\src\\console-app\\ObservabilityDemo.OpenTelemetry.csproj",
+  "projectFilePath": "C:\\Projects\\Observability\\demos\\opentelemetry-samples\\src\\console-app\\ObservabilityDemo.OpenTelemetry.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\marfra\\.nuget\\packages\\microsoft.extensions.configuration\\8.0.0\\microsoft.extensions.configuration.8.0.0.nupkg.sha512",
     "C:\\Users\\marfra\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\8.0.0\\microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
@@ -42,17 +42,15 @@
     "C:\\Users\\marfra\\.nuget\\packages\\system.diagnostics.diagnosticsource\\8.0.0\\system.diagnostics.diagnosticsource.8.0.0.nupkg.sha512",
     "C:\\Users\\marfra\\.nuget\\packages\\system.diagnostics.eventlog\\8.0.0\\system.diagnostics.eventlog.8.0.0.nupkg.sha512",
     "C:\\Users\\marfra\\.nuget\\packages\\system.text.encodings.web\\8.0.0\\system.text.encodings.web.8.0.0.nupkg.sha512",
-    "C:\\Users\\marfra\\.nuget\\packages\\system.text.json\\8.0.0\\system.text.json.8.0.0.nupkg.sha512",
-    "C:\\Users\\marfra\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.17\\microsoft.netcore.app.ref.8.0.17.nupkg.sha512",
-    "C:\\Users\\marfra\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.17\\microsoft.windowsdesktop.app.ref.8.0.17.nupkg.sha512",
-    "C:\\Users\\marfra\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.17\\microsoft.aspnetcore.app.ref.8.0.17.nupkg.sha512",
-    "C:\\Users\\marfra\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.17\\microsoft.netcore.app.host.win-x64.8.0.17.nupkg.sha512"
+    "C:\\Users\\marfra\\.nuget\\packages\\system.text.json\\8.0.0\\system.text.json.8.0.0.nupkg.sha512"
   ],
   "logs": [
     {
       "code": "NU1101",
       "level": "Error",
-      "message": "Unable to find package OpenTelemetry.Exporter.AzureMonitor. No packages exist with this id in source(s): nuget.org",
+      "message": "Unable to find package OpenTelemetry.Exporter.AzureMonitor. No packages exist with this id in source(s): C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org",
+      "projectPath": "C:\\Projects\\Observability\\demos\\opentelemetry-samples\\src\\console-app\\ObservabilityDemo.OpenTelemetry.csproj",
+      "filePath": "C:\\Projects\\Observability\\demos\\opentelemetry-samples\\src\\console-app\\ObservabilityDemo.OpenTelemetry.csproj",
       "libraryId": "OpenTelemetry.Exporter.AzureMonitor",
       "targetGraphs": [
         "net8.0"
@@ -61,8 +59,10 @@
     {
       "code": "NU1902",
       "level": "Warning",
-      "warningLevel": 1,
       "message": "Package 'OpenTelemetry.Instrumentation.AspNetCore' 1.5.1-beta.1 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-vh2m-22xx-q94f",
+      "projectPath": "C:\\Projects\\Observability\\demos\\opentelemetry-samples\\src\\console-app\\ObservabilityDemo.OpenTelemetry.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Projects\\Observability\\demos\\opentelemetry-samples\\src\\console-app\\ObservabilityDemo.OpenTelemetry.csproj",
       "libraryId": "OpenTelemetry.Instrumentation.AspNetCore",
       "targetGraphs": [
         "net8.0"
@@ -71,8 +71,10 @@
     {
       "code": "NU1902",
       "level": "Warning",
-      "warningLevel": 1,
       "message": "Package 'OpenTelemetry.Instrumentation.Http' 1.5.1-beta.1 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-vh2m-22xx-q94f",
+      "projectPath": "C:\\Projects\\Observability\\demos\\opentelemetry-samples\\src\\console-app\\ObservabilityDemo.OpenTelemetry.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Projects\\Observability\\demos\\opentelemetry-samples\\src\\console-app\\ObservabilityDemo.OpenTelemetry.csproj",
       "libraryId": "OpenTelemetry.Instrumentation.Http",
       "targetGraphs": [
         "net8.0"
