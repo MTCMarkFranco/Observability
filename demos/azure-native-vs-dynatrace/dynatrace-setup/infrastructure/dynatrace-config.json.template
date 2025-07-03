@@ -1,0 +1,35 @@
+{
+  "environment": {
+    "url": "https://YOUR_TENANT.live.dynatrace.com",
+    "apiToken": "YOUR_API_TOKEN_HERE",
+    "paasToken": "YOUR_PAAS_TOKEN_HERE",
+    "managementZone": "ObservabilityDemo"
+  },
+  "monitoring": {
+    "autoInjection": true,
+    "realUserMonitoring": true,
+    "syntheticMonitoring": true,
+    "logMonitoring": true,
+    "infrastructureMonitoring": true
+  },
+  "alerting": {
+    "emailNotifications": "admin@yourcompany.com",
+    "slackWebhook": "https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK",
+    "pagerDutyIntegration": false
+  },
+  "dataRetention": {
+    "sessionData": 35,
+    "performanceData": 90,
+    "logData": 30
+  },
+  "security": {
+    "dataPrivacy": "mask-user-input",
+    "ipRestrictions": [],
+    "ssoEnabled": false
+  },
+  "deployment": {
+    "kubernetesNamespace": "dynatrace",
+    "oneAgentVersion": "latest",
+    "networkZone": "default"
+  }
+}

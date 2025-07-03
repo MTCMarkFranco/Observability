@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>azure-dynatrace-comparison-demo</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Azure Native Monitoring -->
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.22.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.ApplicationInsights" Version="2.22.0" />
+    
+    <!-- Enhanced telemetry for comparison -->
+    <PackageReference Include="Microsoft.ApplicationInsights.PerfCounterCollector" Version="2.22.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.DependencyCollector" Version="2.22.0" />
+    
+    <!-- Database for realistic telemetry -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0" />
+    
+    <!-- Redis for caching scenarios -->
+    <PackageReference Include="StackExchange.Redis" Version="2.7.4" />
+    
+    <!-- HTTP client for external dependencies -->
+    <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
+    
+    <!-- Swagger for API documentation -->
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    
+    <!-- Health checks -->
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="8.0.0" />
+  </ItemGroup>
+
+</Project>

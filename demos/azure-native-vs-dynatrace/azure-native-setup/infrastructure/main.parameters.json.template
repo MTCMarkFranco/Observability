@@ -1,0 +1,39 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "resourceGroupName": {
+      "value": "rg-observability-demo"
+    },
+    "location": {
+      "value": "East US"
+    },
+    "applicationName": {
+      "value": "observability-demo"
+    },
+    "subscriptionId": {
+      "value": "YOUR_SUBSCRIPTION_ID_HERE"
+    },
+    "environment": {
+      "value": "demo"
+    },
+    "appServicePlanSku": {
+      "value": "S1"
+    },
+    "sqlServerSize": {
+      "value": "S0"
+    },
+    "logAnalyticsRetentionDays": {
+      "value": 30
+    },
+    "applicationInsightsRetentionDays": {
+      "value": 90
+    },
+    "enableAlerts": {
+      "value": true
+    },
+    "adminEmail": {
+      "value": "admin@yourcompany.com"
+    }
+  }
+}

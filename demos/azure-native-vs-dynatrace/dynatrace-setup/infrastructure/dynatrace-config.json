@@ -1,0 +1,136 @@
+{
+  "dynatrace": {
+    "environment": {
+      "name": "observability-demo",
+      "description": "Azure Native vs Dynatrace comparison demo environment",
+      "tags": [
+        "demo",
+        "azure-native-comparison",
+        "observability"
+      ]
+    },
+    "oneAgent": {
+      "deploymentMode": "fullstack",
+      "hostMonitoring": {
+        "enabled": true,
+        "autoInjection": true
+      },
+      "applicationMonitoring": {
+        "enabled": true,
+        "deepMonitoring": true,
+        "codeLevel": true
+      },
+      "infrastructureMonitoring": {
+        "enabled": true,
+        "processMonitoring": true,
+        "networkMonitoring": true
+      },
+      "cloudPlatformMonitoring": {
+        "enabled": true,
+        "azureIntegration": true
+      }
+    },
+    "monitoring": {
+      "applicationDetection": {
+        "rules": [
+          {
+            "name": "ObservabilityDemo",
+            "applicationId": "OBSERVABILITY_DEMO_APP",
+            "conditions": [
+              {
+                "type": "process_name",
+                "operator": "contains",
+                "value": "dotnet"
+              },
+              {
+                "type": "command_line",
+                "operator": "contains",
+                "value": "SampleApp"
+              }
+            ]
+          }
+        ]
+      },
+      "serviceDetection": {
+        "rules": [
+          {
+            "name": "OrderService",
+            "serviceId": "ORDER_SERVICE",
+            "conditions": [
+              {
+                "type": "web_service_name",
+                "operator": "equals",
+                "value": "OrdersController"
+              }
+            ]
+          },
+          {
+            "name": "InventoryService",
+            "serviceId": "INVENTORY_SERVICE",
+            "conditions": [
+              {
+                "type": "web_service_name",
+                "operator": "equals",
+                "value": "InventoryService"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "requestAttributes": [
+      {
+        "name": "Customer ID",
+        "dataType": "string",
+        "dataSource": "request_parameter",
+        "parameterName": "customerId",
+        "enabled": true
+      },
+      {
+        "name": "Order ID",
+        "dataType": "string",
+        "dataSource": "request_parameter",
+        "parameterName": "orderId",
+        "enabled": true
+      },
+      {
+        "name": "Product ID",
+        "dataType": "string",
+        "dataSource": "request_parameter",
+        "parameterName": "productId",
+        "enabled": true
+      }
+    ],
+    "calculatedMetrics": [
+      {
+        "name": "Order Processing Time",
+        "metricKey": "calc.order_processing_time",
+        "unit": "millisecond",
+        "conditions": [
+          {
+            "type": "service_name",
+            "operator": "equals",
+            "value": "OrderService"
+          }
+        ],
+        "dimensionDefinition": {
+          "name": "Order Type",
+          "dimension": "request_attribute",
+          "key": "order_type"
+        }
+      },
+      {
+        "name": "Inventory Check Performance",
+        "metricKey": "calc.inventory_check_performance",
+        "unit": "millisecond",
+        "conditions": [
+          {
+            "type": "service_name",
+            "operator": "equals",
+            "value": "InventoryService"
+          }
+        ]
+      }
+    ]
+  }
+}

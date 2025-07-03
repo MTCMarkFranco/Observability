@@ -1,0 +1,164 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dynatrace
+  labels:
+    name: dynatrace
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: dynakube
+  namespace: dynatrace
+type: Opaque
+stringData:
+  apiToken: "__DYNATRACE_API_TOKEN__"
+  dataIngestToken: "__DYNATRACE_DATA_INGEST_TOKEN__"
+---
+apiVersion: dynatrace.com/v1beta1
+kind: DynaKube
+metadata:
+  name: observability-demo
+  namespace: dynatrace
+  annotations:
+    feature.dynatrace.com/automatic-kubernetes-api-monitoring: "true"
+spec:
+  # Dynatrace environment URL
+  apiUrl: "https://__DYNATRACE_ENVIRONMENT_ID__.live.dynatrace.com/api"
+  
+  # Tokens for authentication
+  tokens: dynakube
+  
+  # OneAgent configuration
+  oneAgent:
+    # Application monitoring
+    applicationMonitoring:
+      enabled: true
+      
+      # Use container image for OneAgent
+      image: ""
+      
+      # Automatic injection for new pods
+      autoInjection: 
+        enabled: true
+        namespaceSelector: ""
+        
+      # Resource requirements
+      resources:
+        requests:
+          memory: "512Mi"
+          cpu: "100m"
+        limits:
+          memory: "1Gi"
+          cpu: "500m"
+    
+    # Host monitoring (for Azure VMs)
+    hostMonitoring:
+      enabled: true
+      
+      # Node selector for specific nodes
+      nodeSelector: {}
+      
+      # Tolerations for scheduling
+      tolerations: []
+      
+      # Resource requirements
+      resources:
+        requests:
+          memory: "512Mi"
+          cpu: "100m"
+        limits:
+          memory: "1Gi"
+          cpu: "500m"
+      
+      # Host monitoring configuration
+      args:
+        - "--set-app-log-content-access=true"
+        - "--set-host-property=Environment=Demo"
+        - "--set-host-property=Application=ObservabilityDemo"
+        - "--set-host-property=Platform=Azure"
+  
+  # ActiveGate configuration
+  activeGate:
+    capabilities:
+      - routing
+      - kubernetes-monitoring
+      - dynatrace-api
+      
+    # Resource requirements
+    resources:
+      requests:
+        memory: "512Mi"
+        cpu: "100m"
+      limits:
+        memory: "1Gi"
+        cpu: "500m"
+        
+    # Custom properties
+    customProperties:
+      value: |
+        Environment=Demo
+        Application=ObservabilityDemo
+        Platform=Azure
+        
+  # Kubernetes monitoring
+  kubernetesMonitoring:
+    enabled: true
+    
+  # Network zones
+  networkZone: "azure-demo"
+  
+  # Proxy configuration (if needed)
+  proxy:
+    value: ""
+    
+  # Trust store configuration
+  trustedCAs: ""
+  
+  # Feature flags
+  featureFlags: []
+  
+  # Metadata enrichment
+  metadataEnrichment:
+    enabled: true
+    
+---
+# Service Account for Dynatrace Operator
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: dynatrace-operator
+  namespace: dynatrace
+---
+# ClusterRole for Dynatrace Operator
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: dynatrace-operator
+rules:
+- apiGroups: [""]
+  resources: ["nodes", "pods", "services", "endpoints", "events", "configmaps", "secrets"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+- apiGroups: ["apps"]
+  resources: ["deployments", "replicasets", "daemonsets", "statefulsets"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+- apiGroups: ["extensions"]
+  resources: ["deployments", "replicasets", "daemonsets"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+- apiGroups: ["dynatrace.com"]
+  resources: ["dynakubes"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+---
+# ClusterRoleBinding for Dynatrace Operator
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: dynatrace-operator
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: dynatrace-operator
+subjects:
+- kind: ServiceAccount
+  name: dynatrace-operator
+  namespace: dynatrace

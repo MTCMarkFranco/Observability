@@ -1,0 +1,36 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "environmentName": {
+      "value": "demo"
+    },
+    "location": {
+      "value": "East US"
+    },
+    "applicationName": {
+      "value": "observability-demo"
+    },
+    "logAnalyticsSkuName": {
+      "value": "PerGB2018"
+    },
+    "logAnalyticsRetentionDays": {
+      "value": 30
+    },
+    "logAnalyticsDailyQuotaGb": {
+      "value": 10
+    },
+    "sqlDatabaseSkuName": {
+      "value": "Basic"
+    },
+    "appServicePlanSkuName": {
+      "value": "B1"
+    },
+    "sqlAdminUsername": {
+      "value": "sqladmin"
+    },
+    "sqlAdminPassword": {
+      "value": "YourSecurePassword123!"
+    }
+  }
+}

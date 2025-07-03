@@ -1,0 +1,582 @@
+{
+  "alertingProfiles": [
+    {
+      "displayName": "Observability Demo - Production Alerts",
+      "id": "OBSERVABILITY_DEMO_PROD",
+      "rules": [
+        {
+          "type": "APPLICATION",
+          "enabled": true,
+          "conditions": [
+            {
+              "key": "RESPONSE_TIME",
+              "comparisonInfo": {
+                "type": "BASELINE",
+                "comparison": "GREATER",
+                "value": 2.0,
+                "negate": false
+              }
+            }
+          ],
+          "delayInMinutes": 0,
+          "includeMode": "INCLUDE_ALL",
+          "tagFilter": {
+            "includeMode": "INCLUDE_ALL",
+            "tagFilters": [
+              {
+                "context": "CONTEXTLESS",
+                "key": "Environment",
+                "value": "Production"
+              }
+            ]
+          }
+        },
+        {
+          "type": "APPLICATION",
+          "enabled": true,
+          "conditions": [
+            {
+              "key": "FAILURE_RATE",
+              "comparisonInfo": {
+                "type": "BASELINE",
+                "comparison": "GREATER",
+                "value": 5.0,
+                "negate": false
+              }
+            }
+          ],
+          "delayInMinutes": 0,
+          "includeMode": "INCLUDE_ALL",
+          "tagFilter": {
+            "includeMode": "INCLUDE_ALL",
+            "tagFilters": [
+              {
+                "context": "CONTEXTLESS",
+                "key": "Environment",
+                "value": "Production"
+              }
+            ]
+          }
+        },
+        {
+          "type": "SERVICE",
+          "enabled": true,
+          "conditions": [
+            {
+              "key": "RESPONSE_TIME",
+              "comparisonInfo": {
+                "type": "BASELINE",
+                "comparison": "GREATER",
+                "value": 1.5,
+                "negate": false
+              }
+            }
+          ],
+          "delayInMinutes": 0,
+          "includeMode": "INCLUDE_ALL",
+          "tagFilter": {
+            "includeMode": "INCLUDE_ALL",
+            "tagFilters": [
+              {
+                "context": "CONTEXTLESS",
+                "key": "Service",
+                "value": "OrderService"
+              }
+            ]
+          }
+        },
+        {
+          "type": "SERVICE",
+          "enabled": true,
+          "conditions": [
+            {
+              "key": "FAILURE_RATE",
+              "comparisonInfo": {
+                "type": "BASELINE",
+                "comparison": "GREATER",
+                "value": 3.0,
+                "negate": false
+              }
+            }
+          ],
+          "delayInMinutes": 0,
+          "includeMode": "INCLUDE_ALL",
+          "tagFilter": {
+            "includeMode": "INCLUDE_ALL",
+            "tagFilters": [
+              {
+                "context": "CONTEXTLESS",
+                "key": "Service",
+                "value": "InventoryService"
+              }
+            ]
+          }
+        },
+        {
+          "type": "HOST",
+          "enabled": true,
+          "conditions": [
+            {
+              "key": "CPU_USAGE",
+              "comparisonInfo": {
+                "type": "STATIC",
+                "comparison": "GREATER",
+                "value": 80.0,
+                "negate": false
+              }
+            }
+          ],
+          "delayInMinutes": 5,
+          "includeMode": "INCLUDE_ALL",
+          "tagFilter": {
+            "includeMode": "INCLUDE_ALL",
+            "tagFilters": [
+              {
+                "context": "CONTEXTLESS",
+                "key": "Environment",
+                "value": "Production"
+              }
+            ]
+          }
+        },
+        {
+          "type": "HOST",
+          "enabled": true,
+          "conditions": [
+            {
+              "key": "MEMORY_USAGE",
+              "comparisonInfo": {
+                "type": "STATIC",
+                "comparison": "GREATER",
+                "value": 85.0,
+                "negate": false
+              }
+            }
+          ],
+          "delayInMinutes": 5,
+          "includeMode": "INCLUDE_ALL",
+          "tagFilter": {
+            "includeMode": "INCLUDE_ALL",
+            "tagFilters": [
+              {
+                "context": "CONTEXTLESS",
+                "key": "Environment",
+                "value": "Production"
+              }
+            ]
+          }
+        },
+        {
+          "type": "DATABASE",
+          "enabled": true,
+          "conditions": [
+            {
+              "key": "DATABASE_CHILD_CALL_TIME",
+              "comparisonInfo": {
+                "type": "BASELINE",
+                "comparison": "GREATER",
+                "value": 1.0,
+                "negate": false
+              }
+            }
+          ],
+          "delayInMinutes": 0,
+          "includeMode": "INCLUDE_ALL",
+          "tagFilter": {
+            "includeMode": "INCLUDE_ALL",
+            "tagFilters": [
+              {
+                "context": "CONTEXTLESS",
+                "key": "Database",
+                "value": "SQL Server"
+              }
+            ]
+          }
+        },
+        {
+          "type": "CUSTOM_APPLICATION_ERROR",
+          "enabled": true,
+          "conditions": [
+            {
+              "key": "CUSTOM_APPLICATION_ERROR_RATE",
+              "comparisonInfo": {
+                "type": "BASELINE",
+                "comparison": "GREATER",
+                "value": 1.0,
+                "negate": false
+              }
+            }
+          ],
+          "delayInMinutes": 0,
+          "includeMode": "INCLUDE_ALL",
+          "tagFilter": {
+            "includeMode": "INCLUDE_ALL",
+            "tagFilters": [
+              {
+                "context": "CONTEXTLESS",
+                "key": "Application",
+                "value": "ObservabilityDemo"
+              }
+            ]
+          }
+        }
+      ],
+      "eventTypeFilters": [
+        {
+          "customEventFilter": {
+            "customDescriptionFilter": {
+              "operator": "CONTAINS",
+              "value": "Order",
+              "negate": false,
+              "enabled": true,
+              "caseInsensitive": true
+            },
+            "customTitleFilter": {
+              "operator": "CONTAINS",
+              "value": "Error",
+              "negate": false,
+              "enabled": true,
+              "caseInsensitive": true
+            }
+          },
+          "predefinedEventFilter": {
+            "eventType": "CUSTOM_ALERT",
+            "negate": false
+          }
+        }
+      ]
+    }
+  ],
+  "notifications": [
+    {
+      "type": "EMAIL",
+      "name": "Admin Email Notifications",
+      "enabled": true,
+      "alertingProfile": "OBSERVABILITY_DEMO_PROD",
+      "emailConfiguration": {
+        "receivers": [
+          "admin@company.com"
+        ],
+        "ccReceivers": [],
+        "bccReceivers": [],
+        "subject": "Dynatrace Alert: {ProblemTitle}",
+        "body": "Problem Details:\n\n{ProblemDetailsText}\n\nImpacted Entities:\n{ProblemImpact}\n\nProblem URL: {ProblemURL}"
+      }
+    },
+    {
+      "type": "SLACK",
+      "name": "Slack Notifications",
+      "enabled": true,
+      "alertingProfile": "OBSERVABILITY_DEMO_PROD",
+      "slackConfiguration": {
+        "url": "https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK",
+        "channel": "#observability-alerts",
+        "title": "Dynatrace Alert: {ProblemTitle}",
+        "message": "🚨 **{ProblemTitle}**\n\n📊 **Impact**: {ProblemImpact}\n⏰ **Started**: {ProblemDetailsText}\n🔗 **Details**: {ProblemURL}"
+      }
+    },
+    {
+      "type": "WEBHOOK",
+      "name": "Teams Webhook",
+      "enabled": true,
+      "alertingProfile": "OBSERVABILITY_DEMO_PROD",
+      "webhookConfiguration": {
+        "url": "https://outlook.office.com/webhook/YOUR/TEAMS/WEBHOOK",
+        "acceptAnyCertificate": false,
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "payload": "{\n  \"@type\": \"MessageCard\",\n  \"@context\": \"https://schema.org/extensions\",\n  \"summary\": \"Dynatrace Alert\",\n  \"themeColor\": \"FF0000\",\n  \"title\": \"🚨 Dynatrace Alert\",\n  \"text\": \"{ProblemTitle}\",\n  \"sections\": [\n    {\n      \"activityTitle\": \"Problem Details\",\n      \"activitySubtitle\": \"{ProblemDetailsText}\",\n      \"facts\": [\n        {\n          \"name\": \"Impact\",\n          \"value\": \"{ProblemImpact}\"\n        },\n        {\n          \"name\": \"State\",\n          \"value\": \"{State}\"\n        }\n      ]\n    }\n  ],\n  \"potentialAction\": [\n    {\n      \"@type\": \"OpenUri\",\n      \"name\": \"View in Dynatrace\",\n      \"targets\": [\n        {\n          \"os\": \"default\",\n          \"uri\": \"{ProblemURL}\"\n        }\n      ]\n    }\n  ]\n}"
+      }
+    }
+  ],
+  "customEvents": [
+    {
+      "name": "High Order Volume",
+      "description": "Triggered when order volume exceeds normal thresholds",
+      "enabled": true,
+      "query": "SELECT count(*) FROM usersession WHERE useraction.name = 'CreateOrder' AND usersession.duration > 5000",
+      "eventTemplate": {
+        "title": "High Order Volume Detected",
+        "description": "Order volume has exceeded normal thresholds",
+        "eventType": "CUSTOM_ALERT",
+        "source": "Dynatrace",
+        "annotationType": "Order Processing",
+        "properties": [
+          {
+            "key": "threshold",
+            "value": "100"
+          },
+          {
+            "key": "timeframe",
+            "value": "5 minutes"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Inventory Low Stock",
+      "description": "Triggered when inventory levels are critically low",
+      "enabled": true,
+      "query": "SELECT count(*) FROM usersession WHERE useraction.name = 'CheckInventory' AND usersession.stringProperties.inventoryLevel < 10",
+      "eventTemplate": {
+        "title": "Low Inventory Alert",
+        "description": "Product inventory is critically low",
+        "eventType": "CUSTOM_ALERT",
+        "source": "Dynatrace",
+        "annotationType": "Inventory Management",
+        "properties": [
+          {
+            "key": "threshold",
+            "value": "10"
+          },
+          {
+            "key": "action",
+            "value": "Restock Required"
+          }
+        ]
+      }
+    }
+  ],
+  "dashboards": [
+    {
+      "name": "Observability Demo - Executive Summary",
+      "description": "High-level overview of application performance and business metrics",
+      "tiles": [
+        {
+          "name": "Application Health",
+          "tileType": "APPLICATION",
+          "configured": true,
+          "bounds": {
+            "top": 0,
+            "left": 0,
+            "width": 304,
+            "height": 304
+          },
+          "tileFilter": {
+            "timeframe": "-1h",
+            "managementZone": "ObservabilityDemo"
+          }
+        },
+        {
+          "name": "Service Performance",
+          "tileType": "SERVICE",
+          "configured": true,
+          "bounds": {
+            "top": 0,
+            "left": 304,
+            "width": 304,
+            "height": 304
+          },
+          "tileFilter": {
+            "timeframe": "-1h",
+            "managementZone": "ObservabilityDemo"
+          }
+        },
+        {
+          "name": "Infrastructure Health",
+          "tileType": "HOST",
+          "configured": true,
+          "bounds": {
+            "top": 304,
+            "left": 0,
+            "width": 304,
+            "height": 304
+          },
+          "tileFilter": {
+            "timeframe": "-1h",
+            "managementZone": "ObservabilityDemo"
+          }
+        },
+        {
+          "name": "Database Performance",
+          "tileType": "DATABASE",
+          "configured": true,
+          "bounds": {
+            "top": 304,
+            "left": 304,
+            "width": 304,
+            "height": 304
+          },
+          "tileFilter": {
+            "timeframe": "-1h",
+            "managementZone": "ObservabilityDemo"
+          }
+        },
+        {
+          "name": "Custom Metrics - Order Processing",
+          "tileType": "CUSTOM_CHARTING",
+          "configured": true,
+          "bounds": {
+            "top": 608,
+            "left": 0,
+            "width": 608,
+            "height": 304
+          },
+          "chartConfig": {
+            "type": "TIMESERIES",
+            "series": [
+              {
+                "metric": "calc.order_processing_time",
+                "aggregation": "AVG",
+                "percentile": null,
+                "type": "LINE",
+                "entityType": "SERVICE",
+                "dimensions": [],
+                "sortAscending": false,
+                "sortColumn": true,
+                "aggregationRate": "TOTAL"
+              }
+            ],
+            "resultMetadata": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Observability Demo - Technical Details",
+      "description": "Detailed technical metrics for developers and operations",
+      "tiles": [
+        {
+          "name": "Response Time Distribution",
+          "tileType": "CUSTOM_CHARTING",
+          "configured": true,
+          "bounds": {
+            "top": 0,
+            "left": 0,
+            "width": 456,
+            "height": 304
+          },
+          "chartConfig": {
+            "type": "TIMESERIES",
+            "series": [
+              {
+                "metric": "builtin:service.response.time",
+                "aggregation": "PERCENTILE",
+                "percentile": 50,
+                "type": "LINE",
+                "entityType": "SERVICE",
+                "dimensions": [
+                  {
+                    "id": "dt.entity.service",
+                    "name": "Service",
+                    "values": [],
+                    "entityDimension": true
+                  }
+                ]
+              },
+              {
+                "metric": "builtin:service.response.time",
+                "aggregation": "PERCENTILE",
+                "percentile": 95,
+                "type": "LINE",
+                "entityType": "SERVICE",
+                "dimensions": [
+                  {
+                    "id": "dt.entity.service",
+                    "name": "Service",
+                    "values": [],
+                    "entityDimension": true
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "Error Rate",
+          "tileType": "CUSTOM_CHARTING",
+          "configured": true,
+          "bounds": {
+            "top": 0,
+            "left": 456,
+            "width": 456,
+            "height": 304
+          },
+          "chartConfig": {
+            "type": "TIMESERIES",
+            "series": [
+              {
+                "metric": "builtin:service.errors.server.rate",
+                "aggregation": "AVG",
+                "type": "LINE",
+                "entityType": "SERVICE",
+                "dimensions": [
+                  {
+                    "id": "dt.entity.service",
+                    "name": "Service",
+                    "values": [],
+                    "entityDimension": true
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "Throughput",
+          "tileType": "CUSTOM_CHARTING",
+          "configured": true,
+          "bounds": {
+            "top": 304,
+            "left": 0,
+            "width": 456,
+            "height": 304
+          },
+          "chartConfig": {
+            "type": "TIMESERIES",
+            "series": [
+              {
+                "metric": "builtin:service.requestCount.total",
+                "aggregation": "TOTAL",
+                "type": "LINE",
+                "entityType": "SERVICE",
+                "dimensions": [
+                  {
+                    "id": "dt.entity.service",
+                    "name": "Service",
+                    "values": [],
+                    "entityDimension": true
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "Memory Usage",
+          "tileType": "CUSTOM_CHARTING",
+          "configured": true,
+          "bounds": {
+            "top": 304,
+            "left": 456,
+            "width": 456,
+            "height": 304
+          },
+          "chartConfig": {
+            "type": "TIMESERIES",
+            "series": [
+              {
+                "metric": "builtin:host.mem.usage",
+                "aggregation": "AVG",
+                "type": "LINE",
+                "entityType": "HOST",
+                "dimensions": [
+                  {
+                    "id": "dt.entity.host",
+                    "name": "Host",
+                    "values": [],
+                    "entityDimension": true
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

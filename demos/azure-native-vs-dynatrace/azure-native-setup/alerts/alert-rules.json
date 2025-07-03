@@ -1,0 +1,176 @@
+{
+  "alertRules": [
+    {
+      "name": "High Response Time",
+      "description": "Alert when average response time exceeds 2 seconds",
+      "severity": 2,
+      "enabled": true,
+      "condition": {
+        "dataSource": "Application Insights",
+        "query": "requests | where timestamp > ago(5m) | summarize avg(duration) by bin(timestamp, 1m)",
+        "threshold": 2000,
+        "operator": "GreaterThan",
+        "timeAggregation": "Average",
+        "evaluationFrequency": "PT1M",
+        "windowSize": "PT5M"
+      },
+      "actions": [
+        {
+          "type": "ActionGroup",
+          "actionGroupId": "/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.Insights/actionGroups/DemoAlerts"
+        }
+      ]
+    },
+    {
+      "name": "High Error Rate",
+      "description": "Alert when error rate exceeds 5%",
+      "severity": 1,
+      "enabled": true,
+      "condition": {
+        "dataSource": "Application Insights",
+        "query": "requests | where timestamp > ago(5m) | summarize errorRate = (countif(success == false) * 100.0) / count() by bin(timestamp, 1m)",
+        "threshold": 5,
+        "operator": "GreaterThan",
+        "timeAggregation": "Average",
+        "evaluationFrequency": "PT1M",
+        "windowSize": "PT5M"
+      },
+      "actions": [
+        {
+          "type": "ActionGroup",
+          "actionGroupId": "/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.Insights/actionGroups/DemoAlerts"
+        }
+      ]
+    },
+    {
+      "name": "High CPU Usage",
+      "description": "Alert when CPU usage exceeds 80%",
+      "severity": 2,
+      "enabled": true,
+      "condition": {
+        "dataSource": "Azure Monitor",
+        "metricName": "CpuPercentage",
+        "resourceType": "Microsoft.Web/sites",
+        "threshold": 80,
+        "operator": "GreaterThan",
+        "timeAggregation": "Average",
+        "evaluationFrequency": "PT1M",
+        "windowSize": "PT5M"
+      },
+      "actions": [
+        {
+          "type": "ActionGroup",
+          "actionGroupId": "/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.Insights/actionGroups/DemoAlerts"
+        }
+      ]
+    },
+    {
+      "name": "High Memory Usage",
+      "description": "Alert when memory usage exceeds 85%",
+      "severity": 2,
+      "enabled": true,
+      "condition": {
+        "dataSource": "Azure Monitor",
+        "metricName": "MemoryPercentage",
+        "resourceType": "Microsoft.Web/sites",
+        "threshold": 85,
+        "operator": "GreaterThan",
+        "timeAggregation": "Average",
+        "evaluationFrequency": "PT1M",
+        "windowSize": "PT5M"
+      },
+      "actions": [
+        {
+          "type": "ActionGroup",
+          "actionGroupId": "/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.Insights/actionGroups/DemoAlerts"
+        }
+      ]
+    },
+    {
+      "name": "SQL Database High DTU",
+      "description": "Alert when SQL Database DTU exceeds 80%",
+      "severity": 2,
+      "enabled": true,
+      "condition": {
+        "dataSource": "Azure Monitor",
+        "metricName": "dtu_consumption_percent",
+        "resourceType": "Microsoft.Sql/servers/databases",
+        "threshold": 80,
+        "operator": "GreaterThan",
+        "timeAggregation": "Average",
+        "evaluationFrequency": "PT1M",
+        "windowSize": "PT5M"
+      },
+      "actions": [
+        {
+          "type": "ActionGroup",
+          "actionGroupId": "/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.Insights/actionGroups/DemoAlerts"
+        }
+      ]
+    },
+    {
+      "name": "Redis Cache High Memory",
+      "description": "Alert when Redis Cache memory usage exceeds 90%",
+      "severity": 2,
+      "enabled": true,
+      "condition": {
+        "dataSource": "Azure Monitor",
+        "metricName": "usedmemorypercentage",
+        "resourceType": "Microsoft.Cache/redis",
+        "threshold": 90,
+        "operator": "GreaterThan",
+        "timeAggregation": "Average",
+        "evaluationFrequency": "PT1M",
+        "windowSize": "PT5M"
+      },
+      "actions": [
+        {
+          "type": "ActionGroup",
+          "actionGroupId": "/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.Insights/actionGroups/DemoAlerts"
+        }
+      ]
+    },
+    {
+      "name": "Application Exceptions",
+      "description": "Alert when application exceptions exceed 10 per 5 minutes",
+      "severity": 1,
+      "enabled": true,
+      "condition": {
+        "dataSource": "Application Insights",
+        "query": "exceptions | where timestamp > ago(5m) | summarize count() by bin(timestamp, 1m)",
+        "threshold": 10,
+        "operator": "GreaterThan",
+        "timeAggregation": "Total",
+        "evaluationFrequency": "PT1M",
+        "windowSize": "PT5M"
+      },
+      "actions": [
+        {
+          "type": "ActionGroup",
+          "actionGroupId": "/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.Insights/actionGroups/DemoAlerts"
+        }
+      ]
+    },
+    {
+      "name": "Low Request Volume",
+      "description": "Alert when request volume is unusually low (less than 10 requests in 5 minutes)",
+      "severity": 3,
+      "enabled": true,
+      "condition": {
+        "dataSource": "Application Insights",
+        "query": "requests | where timestamp > ago(5m) | summarize count() by bin(timestamp, 1m)",
+        "threshold": 10,
+        "operator": "LessThan",
+        "timeAggregation": "Total",
+        "evaluationFrequency": "PT1M",
+        "windowSize": "PT5M"
+      },
+      "actions": [
+        {
+          "type": "ActionGroup",
+          "actionGroupId": "/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.Insights/actionGroups/DemoAlerts"
+        }
+      ]
+    }
+  ]
+}

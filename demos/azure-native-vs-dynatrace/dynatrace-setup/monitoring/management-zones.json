@@ -1,0 +1,476 @@
+{
+  "managementZones": [
+    {
+      "name": "ObservabilityDemo",
+      "description": "Management zone for the Azure Native vs Dynatrace observability demo",
+      "rules": [
+        {
+          "type": "SERVICE",
+          "enabled": true,
+          "propagationTypes": ["SERVICE_TO_HOST", "SERVICE_TO_PROCESS_GROUP"],
+          "conditions": [
+            {
+              "key": {
+                "attribute": "SERVICE_NAME",
+                "type": "STATIC"
+              },
+              "comparisonInfo": {
+                "type": "STRING",
+                "operator": "CONTAINS",
+                "value": "ObservabilityDemo",
+                "negate": false,
+                "caseSensitive": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "HOST",
+          "enabled": true,
+          "propagationTypes": ["HOST_TO_PROCESS_GROUP"],
+          "conditions": [
+            {
+              "key": {
+                "attribute": "HOST_NAME",
+                "type": "STATIC"
+              },
+              "comparisonInfo": {
+                "type": "STRING",
+                "operator": "CONTAINS",
+                "value": "observability-demo",
+                "negate": false,
+                "caseSensitive": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "PROCESS_GROUP",
+          "enabled": true,
+          "propagationTypes": [],
+          "conditions": [
+            {
+              "key": {
+                "attribute": "PROCESS_GROUP_NAME",
+                "type": "STATIC"
+              },
+              "comparisonInfo": {
+                "type": "STRING",
+                "operator": "CONTAINS",
+                "value": "dotnet",
+                "negate": false,
+                "caseSensitive": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "APPLICATION",
+          "enabled": true,
+          "propagationTypes": [],
+          "conditions": [
+            {
+              "key": {
+                "attribute": "APPLICATION_NAME",
+                "type": "STATIC"
+              },
+              "comparisonInfo": {
+                "type": "STRING",
+                "operator": "CONTAINS",
+                "value": "ObservabilityDemo",
+                "negate": false,
+                "caseSensitive": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "HOST",
+          "enabled": true,
+          "propagationTypes": ["HOST_TO_PROCESS_GROUP"],
+          "conditions": [
+            {
+              "key": {
+                "attribute": "HOST_CUSTOM_METADATA",
+                "type": "STATIC",
+                "key": "Environment"
+              },
+              "comparisonInfo": {
+                "type": "STRING",
+                "operator": "EQUALS",
+                "value": "Demo",
+                "negate": false,
+                "caseSensitive": false
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "OrderService",
+      "description": "Management zone specifically for Order Service components",
+      "rules": [
+        {
+          "type": "SERVICE",
+          "enabled": true,
+          "propagationTypes": ["SERVICE_TO_HOST", "SERVICE_TO_PROCESS_GROUP"],
+          "conditions": [
+            {
+              "key": {
+                "attribute": "SERVICE_NAME",
+                "type": "STATIC"
+              },
+              "comparisonInfo": {
+                "type": "STRING",
+                "operator": "CONTAINS",
+                "value": "OrderService",
+                "negate": false,
+                "caseSensitive": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "WEB_SERVICE",
+          "enabled": true,
+          "propagationTypes": [],
+          "conditions": [
+            {
+              "key": {
+                "attribute": "WEB_SERVICE_NAME",
+                "type": "STATIC"
+              },
+              "comparisonInfo": {
+                "type": "STRING",
+                "operator": "CONTAINS",
+                "value": "Orders",
+                "negate": false,
+                "caseSensitive": false
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "InventoryService",
+      "description": "Management zone specifically for Inventory Service components",
+      "rules": [
+        {
+          "type": "SERVICE",
+          "enabled": true,
+          "propagationTypes": ["SERVICE_TO_HOST", "SERVICE_TO_PROCESS_GROUP"],
+          "conditions": [
+            {
+              "key": {
+                "attribute": "SERVICE_NAME",
+                "type": "STATIC"
+              },
+              "comparisonInfo": {
+                "type": "STRING",
+                "operator": "CONTAINS",
+                "value": "InventoryService",
+                "negate": false,
+                "caseSensitive": false
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Database",
+      "description": "Management zone for database components",
+      "rules": [
+        {
+          "type": "DATABASE",
+          "enabled": true,
+          "propagationTypes": [],
+          "conditions": [
+            {
+              "key": {
+                "attribute": "DATABASE_NAME",
+                "type": "STATIC"
+              },
+              "comparisonInfo": {
+                "type": "STRING",
+                "operator": "CONTAINS",
+                "value": "ObservabilityDemo",
+                "negate": false,
+                "caseSensitive": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "DATABASE",
+          "enabled": true,
+          "propagationTypes": [],
+          "conditions": [
+            {
+              "key": {
+                "attribute": "DATABASE_VENDOR",
+                "type": "STATIC"
+              },
+              "comparisonInfo": {
+                "type": "STRING",
+                "operator": "EQUALS",
+                "value": "Microsoft SQL Server",
+                "negate": false,
+                "caseSensitive": false
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Cache",
+      "description": "Management zone for caching components",
+      "rules": [
+        {
+          "type": "SERVICE",
+          "enabled": true,
+          "propagationTypes": [],
+          "conditions": [
+            {
+              "key": {
+                "attribute": "SERVICE_TYPE",
+                "type": "STATIC"
+              },
+              "comparisonInfo": {
+                "type": "STRING",
+                "operator": "EQUALS",
+                "value": "Redis",
+                "negate": false,
+                "caseSensitive": false
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Production",
+      "description": "Management zone for production environment",
+      "rules": [
+        {
+          "type": "HOST",
+          "enabled": true,
+          "propagationTypes": ["HOST_TO_PROCESS_GROUP"],
+          "conditions": [
+            {
+              "key": {
+                "attribute": "HOST_CUSTOM_METADATA",
+                "type": "STATIC",
+                "key": "Environment"
+              },
+              "comparisonInfo": {
+                "type": "STRING",
+                "operator": "EQUALS",
+                "value": "Production",
+                "negate": false,
+                "caseSensitive": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "APPLICATION",
+          "enabled": true,
+          "propagationTypes": [],
+          "conditions": [
+            {
+              "key": {
+                "attribute": "APPLICATION_CUSTOM_METADATA",
+                "type": "STATIC",
+                "key": "Environment"
+              },
+              "comparisonInfo": {
+                "type": "STRING",
+                "operator": "EQUALS",
+                "value": "Production",
+                "negate": false,
+                "caseSensitive": false
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "name": "Environment",
+      "description": "Tag to identify the environment (Dev, Test, Production)",
+      "rules": [
+        {
+          "type": "SERVICE",
+          "enabled": true,
+          "valueFormat": "Demo",
+          "conditions": [
+            {
+              "key": {
+                "attribute": "SERVICE_NAME",
+                "type": "STATIC"
+              },
+              "comparisonInfo": {
+                "type": "STRING",
+                "operator": "CONTAINS",
+                "value": "ObservabilityDemo",
+                "negate": false,
+                "caseSensitive": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "HOST",
+          "enabled": true,
+          "valueFormat": "Demo",
+          "conditions": [
+            {
+              "key": {
+                "attribute": "HOST_NAME",
+                "type": "STATIC"
+              },
+              "comparisonInfo": {
+                "type": "STRING",
+                "operator": "CONTAINS",
+                "value": "observability-demo",
+                "negate": false,
+                "caseSensitive": false
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Application",
+      "description": "Tag to identify the application",
+      "rules": [
+        {
+          "type": "SERVICE",
+          "enabled": true,
+          "valueFormat": "ObservabilityDemo",
+          "conditions": [
+            {
+              "key": {
+                "attribute": "SERVICE_NAME",
+                "type": "STATIC"
+              },
+              "comparisonInfo": {
+                "type": "STRING",
+                "operator": "CONTAINS",
+                "value": "ObservabilityDemo",
+                "negate": false,
+                "caseSensitive": false
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Component",
+      "description": "Tag to identify specific application components",
+      "rules": [
+        {
+          "type": "SERVICE",
+          "enabled": true,
+          "valueFormat": "OrderService",
+          "conditions": [
+            {
+              "key": {
+                "attribute": "SERVICE_NAME",
+                "type": "STATIC"
+              },
+              "comparisonInfo": {
+                "type": "STRING",
+                "operator": "CONTAINS",
+                "value": "OrderService",
+                "negate": false,
+                "caseSensitive": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "SERVICE",
+          "enabled": true,
+          "valueFormat": "InventoryService",
+          "conditions": [
+            {
+              "key": {
+                "attribute": "SERVICE_NAME",
+                "type": "STATIC"
+              },
+              "comparisonInfo": {
+                "type": "STRING",
+                "operator": "CONTAINS",
+                "value": "InventoryService",
+                "negate": false,
+                "caseSensitive": false
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Platform",
+      "description": "Tag to identify the platform (Azure, AWS, etc.)",
+      "rules": [
+        {
+          "type": "HOST",
+          "enabled": true,
+          "valueFormat": "Azure",
+          "conditions": [
+            {
+              "key": {
+                "attribute": "HOST_CUSTOM_METADATA",
+                "type": "STATIC",
+                "key": "Platform"
+              },
+              "comparisonInfo": {
+                "type": "STRING",
+                "operator": "EQUALS",
+                "value": "Azure",
+                "negate": false,
+                "caseSensitive": false
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "requestNaming": [
+    {
+      "name": "Order API Endpoints",
+      "enabled": true,
+      "namingPattern": "Orders API - {RequestAttribute:httpMethod} {RequestAttribute:httpPath}",
+      "conditions": [
+        {
+          "key": "SERVICE_NAME",
+          "matchType": "CONTAINS",
+          "value": "OrderService"
+        }
+      ]
+    },
+    {
+      "name": "Inventory API Endpoints", 
+      "enabled": true,
+      "namingPattern": "Inventory API - {RequestAttribute:httpMethod} {RequestAttribute:httpPath}",
+      "conditions": [
+        {
+          "key": "SERVICE_NAME",
+          "matchType": "CONTAINS",
+          "value": "InventoryService"
+        }
+      ]
+    }
+  ]
+}

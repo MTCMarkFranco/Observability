@@ -1,0 +1,111 @@
+{
+  "metadata": {
+    "generated_at": "2024-01-15T10:30:00Z",
+    "test_duration_minutes": 60,
+    "load_pattern": "gradual_increase",
+    "max_concurrent_users": 500,
+    "total_requests": 125000
+  },
+  "azure_native_metrics": {
+    "application_insights": {
+      "telemetry_ingestion_latency_ms": {
+        "p50": 245,
+        "p95": 1200,
+        "p99": 2800,
+        "average": 380
+      },
+      "data_availability_delay_seconds": {
+        "real_time_metrics": 15,
+        "detailed_traces": 90,
+        "dependency_maps": 300
+      },
+      "query_performance_ms": {
+        "simple_queries": 850,
+        "complex_aggregations": 3200,
+        "cross_service_queries": 5500
+      }
+    },
+    "log_analytics": {
+      "log_ingestion_latency_ms": {
+        "p50": 180,
+        "p95": 950,
+        "p99": 2100,
+        "average": 285
+      },
+      "kql_query_performance_ms": {
+        "simple_queries": 450,
+        "complex_joins": 2800,
+        "time_series_queries": 1900
+      }
+    },
+    "azure_monitor": {
+      "metric_collection_frequency_seconds": 60,
+      "alerting_latency_seconds": {
+        "simple_alerts": 120,
+        "complex_alerts": 300
+      }
+    }
+  },
+  "dynatrace_metrics": {
+    "application_monitoring": {
+      "telemetry_ingestion_latency_ms": {
+        "p50": 85,
+        "p95": 350,
+        "p99": 800,
+        "average": 145
+      },
+      "data_availability_delay_seconds": {
+        "real_time_metrics": 3,
+        "detailed_traces": 15,
+        "dependency_maps": 30
+      },
+      "query_performance_ms": {
+        "simple_queries": 280,
+        "complex_aggregations": 850,
+        "cross_service_queries": 1200
+      }
+    },
+    "infrastructure_monitoring": {
+      "metric_collection_frequency_seconds": 10,
+      "alerting_latency_seconds": {
+        "simple_alerts": 30,
+        "complex_alerts": 90
+      }
+    },
+    "ai_insights": {
+      "problem_detection_time_seconds": {
+        "performance_degradation": 45,
+        "error_rate_increase": 25,
+        "dependency_issues": 60
+      },
+      "root_cause_analysis_accuracy": 0.87
+    }
+  },
+  "comparison_summary": {
+    "data_ingestion_speed": {
+      "winner": "dynatrace",
+      "azure_native_score": 6.5,
+      "dynatrace_score": 9.2
+    },
+    "query_performance": {
+      "winner": "dynatrace",
+      "azure_native_score": 7.0,
+      "dynatrace_score": 8.8
+    },
+    "alerting_responsiveness": {
+      "winner": "dynatrace",
+      "azure_native_score": 6.8,
+      "dynatrace_score": 9.5
+    },
+    "data_visualization": {
+      "winner": "dynatrace",
+      "azure_native_score": 7.5,
+      "dynatrace_score": 9.0
+    },
+    "overall_user_experience": {
+      "winner": "dynatrace",
+      "azure_native_score": 7.0,
+      "dynatrace_score": 9.1
+    }
+  }
+}
