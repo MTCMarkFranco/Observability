@@ -123,6 +123,53 @@ The infrastructure templates provide:
 - Dashboard configurations
 - Troubleshooting procedures
 
+## 🆚 OpenTelemetry vs Azure Native Comparison
+
+### New! Comprehensive Enterprise Decision Framework
+
+We've added a detailed comparison between OpenTelemetry and Azure cloud-native observability services to help enterprises make informed decisions:
+
+#### 📊 **[Enterprise Comparison Slides](slides/08-opentelemetry-vs-azure-native/README.md)**
+- 75-minute presentation with detailed analysis
+- Feature-by-feature comparison matrix
+- Enterprise readiness assessment
+- Cost analysis and ROI calculations
+
+#### 📋 **[Detailed Documentation](docs/opentelemetry-vs-azure-comparison.md)**
+- Comprehensive technical comparison
+- Maturity assessment across key dimensions
+- Strategic recommendations for different scenarios
+- Migration planning guidance
+
+#### 🧮 **[Cost Analysis Tool](demos/cost-analysis-tool/README.md)**
+- Interactive TCO calculator
+- PowerShell-based cost modeling
+- Scenario-based recommendations
+- Real-world cost examples
+
+#### 🔬 **[Side-by-Side Demo](demos/opentelemetry-vs-azure-comparison/README.md)**
+- Identical applications with both approaches
+- Performance impact comparison
+- Feature completeness analysis
+- Troubleshooting experience evaluation
+
+### Key Findings Summary
+
+| Criteria | OpenTelemetry | Azure Native | Winner |
+|----------|---------------|--------------|---------|
+| **Vendor Independence** | ✅ Excellent | ❌ Azure-locked | OpenTelemetry |
+| **Time to Market** | ❌ Slow | ✅ Fast | Azure Native |
+| **Feature Completeness** | ⚠️ Limited APM | ✅ Comprehensive | Azure Native |
+| **Enterprise Support** | ⚠️ Community | ✅ Microsoft SLA | Azure Native |
+| **Cost at Scale** | ✅ Optimizable | ⚠️ Can be expensive | OpenTelemetry |
+| **Overall Enterprise Readiness** | 67% | 87% | Azure Native |
+
+### Strategic Recommendations
+
+- **Choose Azure Native** for immediate value, comprehensive features, and Azure-first strategy
+- **Choose OpenTelemetry** for vendor independence, cost optimization at scale, and multi-cloud flexibility
+- **Consider Hybrid** for risk mitigation and gradual transition strategies
+
 ## 🚀 Get Started
 
 1. **Review Slides**: Start with [Observability Overview](slides/01-observability-overview/README.md)
