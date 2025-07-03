@@ -31,17 +31,7 @@ resource windowsDataCollectionRule 'Microsoft.Insights/dataCollectionRules@2022-
           name: 'perfCounterDataSource60'
         }
       ]
-      windowsEventLogs: [
-        {
-          streams: ['Microsoft-WindowsEvent']
-          xPathQueries: [
-            'Security!*[System[(Level=1 or Level=2 or Level=3 or Level=4 or Level=0)]]'
-            'Application!*[System[(Level=1 or Level=2 or Level=3)]]'
-            'System!*[System[(Level=1 or Level=2 or Level=3)]]'
-          ]
-          name: 'windowsEventLogsDataSource'
-        }
-      ]
+      // windowsEventLogs removed to avoid LAW table error
     }
     destinations: {
       logAnalytics: [
@@ -58,12 +48,7 @@ resource windowsDataCollectionRule 'Microsoft.Insights/dataCollectionRules@2022-
         transformKql: 'source'
         outputStream: 'Microsoft-Perf'
       }
-      {
-        streams: ['Microsoft-WindowsEvent']
-        destinations: ['la-workspace']
-        transformKql: 'source'
-        outputStream: 'Microsoft-WindowsEvent'
-      }
+      // Microsoft-WindowsEvent dataFlow removed
     ]
   }
 }

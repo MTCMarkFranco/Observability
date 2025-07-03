@@ -5,7 +5,15 @@ param(
     [string]$EnvironmentName = "demo",
     [string]$OrganizationName = "contoso",
     [string]$Location = "East US",
-    [switch]$EnableSentinel = $false
+    [switch]$EnableSentinel = $false,
+    [string]$LogAnalyticsSkuName = "PerGB2018",
+    [int]$RetentionInDays = 365,
+    [int]$DailyQuotaGb = -1,
+    [string]$TagPurpose = "Observability",
+    [string]$TagManagedBy = "Platform-Team",
+    [string]$TagCostCenter = "IT-Operations",
+    [string]$TagBusinessOwner = "CTO",
+    [string]$TagDataClassification = "Internal"
 )
 
 # Generate a random suffix for unique resource names
@@ -64,7 +72,15 @@ $paramsContent = Get-Content $originalParamsPath | ConvertFrom-Json
 $paramsContent.parameters.environmentName.value = $EnvironmentName
 $paramsContent.parameters.organizationName.value = $OrganizationName
 $paramsContent.parameters.enableSentinel.value = $EnableSentinel.IsPresent
+$paramsContent.parameters.logAnalyticsSkuName.value = $LogAnalyticsSkuName
+$paramsContent.parameters.retentionInDays.value = $RetentionInDays
+$paramsContent.parameters.dailyQuotaGb.value = $DailyQuotaGb
 $paramsContent.parameters.tags.value.Environment = $EnvironmentName
+$paramsContent.parameters.tags.value.Purpose = $TagPurpose
+$paramsContent.parameters.tags.value.ManagedBy = $TagManagedBy
+$paramsContent.parameters.tags.value.CostCenter = $TagCostCenter
+$paramsContent.parameters.tags.value.BusinessOwner = $TagBusinessOwner
+$paramsContent.parameters.tags.value.DataClassification = $TagDataClassification
 
 # Save temporary parameters file
 $paramsContent | ConvertTo-Json -Depth 10 | Set-Content $tempParamsFile
