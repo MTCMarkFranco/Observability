@@ -22,12 +22,6 @@ param dailyQuotaGb int = -1
 @description('Enable Microsoft Sentinel')
 param enableSentinel bool = false
 
-@description('Enable Container Insights')
-param enableContainerInsights bool = true
-
-@description('Enable VM Insights')
-param enableVmInsights bool = true
-
 @description('Tags to apply to all resources')
 param tags object = {
   Environment: environmentName
@@ -104,7 +98,6 @@ module dataCollectionRules 'modules/data-collection-rules.bicep' = {
     environmentName: environmentName
     location: location
     workspaceResourceId: logAnalyticsWorkspace.id
-    userAssignedIdentityId: userAssignedIdentity.id
     tags: tags
   }
 }
@@ -201,11 +194,6 @@ resource sentinel 'Microsoft.SecurityInsights/onboardingStates@2023-02-01' = if 
 // Sentinel Data Connectors (if Sentinel is enabled)
 module sentinelConnectors 'modules/sentinel-connectors.bicep' = if (enableSentinel) {
   name: 'sentinelConnectors'
-  params: {
-    workspaceName: logAnalyticsWorkspace.name
-    location: location
-    tags: tags
-  }
 }
 
 // Workbooks

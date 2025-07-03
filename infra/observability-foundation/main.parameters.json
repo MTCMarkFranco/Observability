@@ -20,12 +20,6 @@
     "enableSentinel": {
       "value": true
     },
-    "enableContainerInsights": {
-      "value": true
-    },
-    "enableVmInsights": {
-      "value": true
-    },
     "tags": {
       "value": {
         "Environment": "Production",
