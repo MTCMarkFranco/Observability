@@ -36,6 +36,7 @@ resource highCpuAlert 'Microsoft.Insights/scheduledQueryRules@2022-06-15' = {
         {
           query: 'Perf | where ObjectName == "Processor" and CounterName == "% Processor Time" and InstanceName == "_Total" | where CounterValue > 80 | summarize AggregatedValue = avg(CounterValue) by Computer'
           timeAggregation: 'Average'
+          metricMeasureColumn: 'AggregatedValue'
           dimensions: [
             {
               name: 'Computer'
@@ -46,8 +47,8 @@ resource highCpuAlert 'Microsoft.Insights/scheduledQueryRules@2022-06-15' = {
           operator: 'GreaterThan'
           threshold: 80
           failingPeriods: {
-            numberOfEvaluationPeriods: 3
-            minFailingPeriodsToAlert: 2
+            numberOfEvaluationPeriods: 1
+            minFailingPeriodsToAlert: 1
           }
         }
       ]
@@ -80,6 +81,7 @@ resource lowMemoryAlert 'Microsoft.Insights/scheduledQueryRules@2022-06-15' = {
         {
           query: 'Perf | where ObjectName == "Memory" and CounterName == "Available MBytes" | extend AvailableMemoryPercentage = CounterValue / 1024 * 100 | where AvailableMemoryPercentage < 10 | summarize AggregatedValue = avg(AvailableMemoryPercentage) by Computer'
           timeAggregation: 'Average'
+          metricMeasureColumn: 'AggregatedValue'
           dimensions: [
             {
               name: 'Computer'
@@ -90,8 +92,8 @@ resource lowMemoryAlert 'Microsoft.Insights/scheduledQueryRules@2022-06-15' = {
           operator: 'LessThan'
           threshold: 10
           failingPeriods: {
-            numberOfEvaluationPeriods: 3
-            minFailingPeriodsToAlert: 2
+            numberOfEvaluationPeriods: 1
+            minFailingPeriodsToAlert: 1
           }
         }
       ]
@@ -124,6 +126,7 @@ resource lowDiskSpaceAlert 'Microsoft.Insights/scheduledQueryRules@2022-06-15' =
         {
           query: 'Perf | where ObjectName == "LogicalDisk" and CounterName == "% Free Space" and InstanceName != "_Total" | where CounterValue < 10 | summarize AggregatedValue = avg(CounterValue) by Computer, InstanceName'
           timeAggregation: 'Average'
+          metricMeasureColumn: 'AggregatedValue'
           dimensions: [
             {
               name: 'Computer'
@@ -139,7 +142,7 @@ resource lowDiskSpaceAlert 'Microsoft.Insights/scheduledQueryRules@2022-06-15' =
           operator: 'LessThan'
           threshold: 10
           failingPeriods: {
-            numberOfEvaluationPeriods: 2
+            numberOfEvaluationPeriods: 1
             minFailingPeriodsToAlert: 1
           }
         }
@@ -171,7 +174,7 @@ resource serviceDownAlert 'Microsoft.Insights/scheduledQueryRules@2022-06-15' = 
     criteria: {
       allOf: [
         {
-          query: 'Heartbeat | summarize LastHeartbeat = max(TimeGenerated) by Computer | where LastHeartbeat < ago(10m)'
+          query: 'Heartbeat | summarize Count = count() by Computer | where Count == 0'
           timeAggregation: 'Count'
           operator: 'GreaterThan'
           threshold: 0

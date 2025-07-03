@@ -1,0 +1,50 @@
+{
+    "applicationInsightsConnectionString":  {
+                                                "type":  "String",
+                                                "value":  "InstrumentationKey=4af73454-a1af-4bcb-8d2a-8c25485930a8;IngestionEndpoint=https://eastus-8.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus.livediagnostics.monitor.azure.com/;ApplicationId=986cb495-e30c-467a-9c9b-28403b088793"
+                                            },
+    "applicationInsightsId":  {
+                                  "type":  "String",
+                                  "value":  "/subscriptions/28d10200-70b0-476c-b004-c6ae29265897/resourceGroups/rg-observability-demo-1830/providers/Microsoft.Insights/components/ai-contoso-demo-hdkllc"
+                              },
+    "applicationInsightsInstrumentationKey":  {
+                                                  "type":  "String",
+                                                  "value":  "4af73454-a1af-4bcb-8d2a-8c25485930a8"
+                                              },
+    "criticalActionGroupId":  {
+                                  "type":  "String",
+                                  "value":  "/subscriptions/28d10200-70b0-476c-b004-c6ae29265897/resourceGroups/rg-observability-demo-1830/providers/Microsoft.Insights/actionGroups/ag-contoso-demo-critical"
+                              },
+    "logAnalyticsCustomerId":  {
+                                   "type":  "String",
+                                   "value":  "07173b57-e2da-40a4-a0f9-240ee9bd107c"
+                               },
+    "logAnalyticsWorkspaceId":  {
+                                    "type":  "String",
+                                    "value":  "/subscriptions/28d10200-70b0-476c-b004-c6ae29265897/resourceGroups/rg-observability-demo-1830/providers/Microsoft.OperationalInsights/workspaces/law-contoso-demo-hdkllc"
+                                },
+    "logAnalyticsWorkspaceName":  {
+                                      "type":  "String",
+                                      "value":  "law-contoso-demo-hdkllc"
+                                  },
+    "sentinelEnabled":  {
+                            "type":  "Bool",
+                            "value":  true
+                        },
+    "userAssignedIdentityClientId":  {
+                                         "type":  "String",
+                                         "value":  "a31f1105-461a-44cf-a554-3e5f0fc59e2c"
+                                     },
+    "userAssignedIdentityId":  {
+                                   "type":  "String",
+                                   "value":  "/subscriptions/28d10200-70b0-476c-b004-c6ae29265897/resourceGroups/rg-observability-demo-1830/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-contoso-demo-monitoring"
+                               },
+    "userAssignedIdentityPrincipalId":  {
+                                            "type":  "String",
+                                            "value":  "25bba88d-f4da-45f4-bb01-3068aeac805a"
+                                        },
+    "warningActionGroupId":  {
+                                 "type":  "String",
+                                 "value":  "/subscriptions/28d10200-70b0-476c-b004-c6ae29265897/resourceGroups/rg-observability-demo-1830/providers/Microsoft.Insights/actionGroups/ag-contoso-demo-warning"
+                             }
+}
